@@ -14,7 +14,8 @@ RUN mkdir /usr/local/tomcat/webapps/reportserver
 RUN wget -P /usr/local/tomcat/bin/ http://raw.githubusercontent.com/aibano/reportserver-docker/master/setenv.sh
 
 # Copy database connection configuration file from host to container
-ADD persistence.xml /usr/local/tomcat/webapps/reportserver/WEB-INF/classes/META-INF/
+# ADD persistence.xml /usr/local/tomcat/webapps/reportserver/WEB-INF/classes/META-INF/
+RUN wget -P /usr/local/tomcat/webapps/reportserver/WEB-INF/classes/META-INF/ http://raw.githubusercontent.com/aibano/reportserver-docker/master/persistence.xml
 
 RUN apt-get update && \
     apt-get install -y zip && \
