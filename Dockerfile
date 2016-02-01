@@ -8,8 +8,10 @@ MAINTAINER Osama Alaiban, megdam@gmail.com
 # Copy the file from host to container
 RUN mkdir /usr/local/tomcat/webapps/reportserver
 
-# Copy the environment file from host to container
-ADD setenv.sh /usr/local/tomcat/bin
+# Copy the environment file from host to container. In order for the 
+# In case you want to increase the HEAP uncomment the below line.
+# ADD setenv.sh /usr/local/tomcat/bin
+RUN wget -P /usr/local/tomcat/bin/ http://raw.githubusercontent.com/aibano/reportserver-docker/master/setenv.sh
 
 # Copy database connection configuration file from host to container
 ADD persistence.xml /usr/local/tomcat/webapps/reportserver/WEB-INF/classes/META-INF/
