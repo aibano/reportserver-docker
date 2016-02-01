@@ -2,7 +2,7 @@
 # ReportServer
 #
 
-FROM aibano/tomcat-java-7
+FROM aibano/tomcat-docker
 MAINTAINER Osama Alaiban, megdam@gmail.com
 
 # Copy the file from host to container
