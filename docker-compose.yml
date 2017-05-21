@@ -1,0 +1,26 @@
+version: "2"
+volumes:
+  reportserverconfig:
+
+services:
+  mysql:
+    image: aibano/mysql-reportserver
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=rootpassword
+      - MYSQL_DATABASE=reportserver
+      - MYSQL_USER=reportserveruser
+      - MYSQL_PASSWORD=reportserverpassword
+  reportserver:
+    image: reportserver
+    ports:
+      - 8080:8080
+    environment:
+    - HIBERNATE_DIALECT=net.datenwerke.rs.utils.hibernate.MySQL5Dialect
+    - HIBERNATE_CONNECTION_DRIVER=com.mysql.jdbc.Driver
+    - HIBERNATE_CONNECTION_URL=jdbc:mysql://mysql:3306/reportserver
+    - HIBERNATE_CONNECTION_USERNAME=reportserveruser
+    - HIBERNATE_CONNECTION_PASSWORD=reportserverpassword
+    volumes:
+      - reportserverconfig:/usr/local/tomcat/webapps/reportserver/WEB-INF/classes/
