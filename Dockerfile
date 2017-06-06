@@ -12,7 +12,7 @@ RUN mkdir /usr/local/tomcat/webapps/reportserver
 ADD setenv.sh /usr/local/tomcat/bin
 
 # Copy the report server zip file
-ADD RS3.0.2-5855-2016-05-29-17-55-24-reportserver-ce.zip /usr/local/tomcat/webapps/reportserver/
+RUN wget -P /usr/local/tomcat/webapps/reportserver/ https://sourceforge.net/projects/dw-rs/files/bin/3.0/RS3.0.2-5855-2016-05-29-17-55-24-reportserver-ce.zip
 
 RUN apt-get update && \
     apt-get install -y zip && \
